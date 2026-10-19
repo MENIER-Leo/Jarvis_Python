@@ -45,7 +45,6 @@ def ecouter():
             return ""
 
 
-# --- BOUCLE PRINCIPALE EN ARRIÈRE-PLAN ---
 def demarrer_jarvis():
     parler("Système en ligne. J'attends vos instructions.")
 
@@ -70,7 +69,7 @@ def demarrer_jarvis():
             fenetre.after(0, fenetre.destroy)
             break
 
-        # --- CONTRÔLE SPOTIFY ET VALO ---
+        # --- CONTROLE SPOTIFY ET VALO ---
         elif "lance ma playlist spotify" in commande or "lance spotify" in commande or "ouvre spotify" in commande:
             parler("Bien sûr monsieur. Ouverture de Spotify.")
             webbrowser.open("https://open.spotify.com/playlist/37i9dQZF1F5p3rmiWPIYgZ?si=bb2c966ae7e24b81")
@@ -94,7 +93,7 @@ def demarrer_jarvis():
             os.system("taskkill /F /IM VALORANT-Win64-Shipping.exe")
             os.system("taskkill /F /IM RiotClientServices.exe")
 
-        # --- CONTRÔLE NAVIGATEUR (YOUTUBE & ANIME) ---
+        # --- CONTROLE NAVIGATEUR (YOUTUBE & ANIME) ---
         elif "lance youtube" in commande or "ouvre youtube" in commande:
             parler("Je lance youtube.")
             webbrowser.open("https://www.youtube.com/")
@@ -158,17 +157,12 @@ def demarrer_jarvis():
                 print(f"Erreur API : {e}")
 
 
-# ==========================================
-# --- CRÉATION DE LA FENÊTRE PRINCIPALE ---
-# ==========================================
+# ---FENETRE PRINCIPALE---
 fenetre = tk.Tk()
 fenetre.title("Jarvis HUD")
-
-# Configuration de la taille et de la position (500x120 pixels, placée en bas à droite)
 fenetre.geometry("500x120+-10+-10")
 
-# Force la fenêtre à rester au-dessus de tes jeux et navigateurs
-fenetre.attributes("-topmost", True)
+fenetre.attributes("-topmost", True) # Force la fenêtre à rester au-dessus des jeux et navigateurs
 
 # Design de la fenêtre (fond noir, texte cyan style codeur)
 fenetre.configure(bg="#0f0f0f")
@@ -188,5 +182,4 @@ thread_cerveau = threading.Thread(target=demarrer_jarvis)
 thread_cerveau.daemon = True
 thread_cerveau.start()
 
-# On fait tourner la fenêtre en boucle (indispensable pour l'affichage)
 fenetre.mainloop()
